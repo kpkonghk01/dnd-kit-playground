@@ -1,0 +1,9 @@
+yarn create vite . --template react-ts
+node -v >> .nvmrc
+yarn set version berry
+echo "nodeLinker: node-modules" >> .yarnrc.yml
+
+yarn add @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+
+git init
+git remote add origin git@github.com:kpkonghk01/dnd-kit-playground.git
