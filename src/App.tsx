@@ -117,7 +117,6 @@ function App() {
         }}
       >
         <RowSwap />
-        <br />
         <ColSwap />
       </GridContext.Provider>
     </main>

@@ -16,9 +16,10 @@ td {
 .fake-table {
   display: flex;
   flex-direction: row;
-  /* border-width: 0 1px 1px 0;
-  border-style: solid; */
   width: fit-content;
+  border-width: 1px 0 0 1px;
+  border-style: solid;
+  border-color: transparent;
 }
 
 .fake-table > .fake-col {
@@ -28,7 +29,7 @@ td {
 
 .fake-table > .fake-col > .fake-cell {
   padding: 10px;
-  border-width: 0 0.5px 0.5px 0;
+  border-width: 0 1px 1px 0;
   border-style: solid;
   border-color: transparent;
 }

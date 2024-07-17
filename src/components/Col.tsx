@@ -44,7 +44,7 @@ const Col: FC<ColProps> = ({ col }) => {
         style={{
           textAlign: "center",
           cursor: "grab",
-          height: "30px",
+          height: "32px",
         }}
         className="fake-cell"
       >

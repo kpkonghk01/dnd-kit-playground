@@ -24,12 +24,12 @@ const Row: FC<RowProps> = ({ row }) => {
   };
 
   useEffect(() => {
-    if (node.current) {
+    if (node.current !== null) {
       setSizes((sizes) => ({
         row: {
           ...sizes.row,
-          // 20 is the height of the row's padding
-          [row.id]: node.current!.offsetHeight - 20,
+          // 20 is the height of the row's padding, 1 is for the border
+          [row.id]: node.current!.getBoundingClientRect().height - 21,
         },
       }));
     }

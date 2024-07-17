@@ -44,7 +44,7 @@ const ColSwap = () => {
         <div
           className="fake-table grid-swap"
           style={{
-            marginLeft: "40.5px",
+            marginLeft: "40px",
           }}
         >
           {colGrid.map((col) => (
