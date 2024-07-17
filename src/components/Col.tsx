@@ -26,7 +26,7 @@ const Col: FC<ColProps> = ({ col }) => {
 
   const style: CSSProperties = {
     transition,
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
   };
 
   useEffect(() => {

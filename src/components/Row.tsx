@@ -20,7 +20,7 @@ const Row: FC<RowProps> = ({ row }) => {
 
   const style: CSSProperties = {
     transition,
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
   };
 
   useEffect(() => {
