@@ -1,62 +1,111 @@
-import {
-  DndContext,
-  DragEndEvent,
-  UniqueIdentifier,
-  closestCorners,
-} from "@dnd-kit/core";
-import {
-  SortableContext,
-  arrayMove,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
 import { useState } from "react";
-import Row, { RowData } from "./components/Row";
+import { RowData } from "./components/Row";
+import { Grid, GridContext } from "./GridContext";
+import RowSwap from "./RowSwap";
+import ColSwap from "./ColSwap";
 
 function App() {
   const [grid, setGrid] = useState<RowData[]>([
     {
       id: "A",
-      children: [{ id: "A1" }, { id: "A2" }, { id: "A3" }],
+      children: [
+        {
+          id: "A1",
+          content: (
+            <>
+              <p>A1</p>
+              <p>A1 R2</p>
+            </>
+          ),
+        },
+        {
+          id: "A2",
+          content: (
+            <>
+              <p>A2</p>
+            </>
+          ),
+        },
+        {
+          id: "A3",
+          content: (
+            <>
+              <p>A3</p>
+            </>
+          ),
+        },
+      ],
     },
     {
       id: "B",
-      children: [{ id: "B1" }, { id: "B2" }, { id: "B3" }],
+      children: [
+        {
+          id: "B1",
+          content: (
+            <>
+              <p>B1</p>
+            </>
+          ),
+        },
+        {
+          id: "B2",
+          content: (
+            <>
+              <p>B2</p>
+            </>
+          ),
+        },
+        {
+          id: "B3",
+          content: (
+            <>
+              <p>B3</p>
+            </>
+          ),
+        },
+      ],
     },
     {
       id: "C",
-      children: [{ id: "C1" }, { id: "C2" }, { id: "C3" }],
+      children: [
+        {
+          id: "C1",
+          content: (
+            <>
+              <p>C1</p>
+            </>
+          ),
+        },
+        {
+          id: "C2",
+          content: (
+            <>
+              <p>C2</p>
+            </>
+          ),
+        },
+        {
+          id: "C3",
+          content: (
+            <>
+              <p>C3</p>
+            </>
+          ),
+        },
+      ],
     },
   ]);
-
-  const getRowIdx = (id: UniqueIdentifier) =>
-    grid.findIndex((row) => row.id === id);
-
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (!over || active.id === over.id) return;
-
-    setGrid((tasks) => {
-      const from = getRowIdx(active.id);
-      const to = getRowIdx(over.id);
-
-      return arrayMove(tasks, from, to);
-    });
-  };
+  const [sizes, setSizes] = useState<Grid["sizes"]>({
+    row: {},
+  });
 
   return (
     <main>
-      <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-        <SortableContext items={grid} strategy={verticalListSortingStrategy}>
-          <table>
-            <tbody>
-              {grid.map((row) => (
-                <Row key={row.id} row={row} />
-              ))}
-            </tbody>
-          </table>
-        </SortableContext>
-      </DndContext>
+      <GridContext.Provider value={{ grid, setGrid, sizes, setSizes }}>
+        <RowSwap />
+        <br />
+        <ColSwap />
+      </GridContext.Provider>
     </main>
   );
 }

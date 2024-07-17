@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 export type CellData = {
   id: string;
+  content: ReactNode;
 };
 
 type CellProps = {
@@ -9,7 +10,7 @@ type CellProps = {
 };
 
 const Cell: FC<CellProps> = ({ cell }) => {
-  return <td>{cell.id}</td>;
+  return <td>{cell.content}</td>;
 };
 
 export default Cell;

@@ -11,4 +11,24 @@ td {
 th,
 td {
   padding: 10px;
+  vertical-align: top;
+}
+
+.fake-table {
+  display: flex;
+  flex-direction: row;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  width: fit-content;
+}
+
+.fake-table > .fake-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.fake-table > .fake-col > .fake-cell {
+  padding: 10px;
+  /* border-width: 1px 0 0 1px;
+  border-style: solid; */
 }
