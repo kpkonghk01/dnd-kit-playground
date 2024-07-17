@@ -9,7 +9,7 @@ type FakeCellProps = {
 };
 
 const FakeCell: FC<FakeCellProps> = ({ cell, rowId }) => {
-  const { sizes } = useContext(GridContext);
+  const { sizes, isColSwapping } = useContext(GridContext);
   const rowHeight = sizes.row[rowId];
 
   return (
@@ -17,6 +17,7 @@ const FakeCell: FC<FakeCellProps> = ({ cell, rowId }) => {
       className="fake-cell"
       style={{
         height: rowHeight,
+        ...(isColSwapping ? { opacity: 1 } : { opacity: 0 }),
       }}
     >
       {cell.content}

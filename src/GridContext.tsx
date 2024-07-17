@@ -12,6 +12,8 @@ export type Grid = {
       row: Record<RowData["id"], number>;
     }>
   >;
+  isColSwapping: boolean;
+  setIsColSwapping: Dispatch<SetStateAction<boolean>>;
 };
 
 export const GridContext = createContext<Grid>({
@@ -21,4 +23,6 @@ export const GridContext = createContext<Grid>({
     row: {},
   },
   setSizes: () => {},
+  isColSwapping: false,
+  setIsColSwapping: () => {},
 });

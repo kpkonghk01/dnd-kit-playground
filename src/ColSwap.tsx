@@ -18,8 +18,6 @@ const ColSwap = () => {
   const { grid, setGrid } = useContext(GridContext);
   const { originalRowIds, colGrid } = gridRestructure(grid);
 
-  console.log(colGrid, "colGrid");
-
   const getColIdx = useCallback(
     (id: UniqueIdentifier) => colGrid.findIndex((col) => col.id === id),
     [colGrid]
@@ -43,7 +41,12 @@ const ColSwap = () => {
   return (
     <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
       <SortableContext items={colGrid} strategy={horizontalListSortingStrategy}>
-        <div className="fake-table">
+        <div
+          className="fake-table grid-swap"
+          style={{
+            marginLeft: "40.5px",
+          }}
+        >
           {colGrid.map((col) => (
             <Col key={col.id} col={col} />
           ))}

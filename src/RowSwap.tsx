@@ -37,7 +37,12 @@ const RowSwap = () => {
   return (
     <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
       <SortableContext items={grid} strategy={verticalListSortingStrategy}>
-        <table>
+        <table
+          style={{
+            marginTop: "50.5px",
+          }}
+          className="grid-swap"
+        >
           <tbody>
             {grid.map((row) => (
               <Row key={row.id} row={row} />

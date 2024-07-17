@@ -1,4 +1,5 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useContext } from "react";
+import { GridContext } from "../GridContext";
 
 export type CellData = {
   id: string;
@@ -10,7 +11,17 @@ type CellProps = {
 };
 
 const Cell: FC<CellProps> = ({ cell }) => {
-  return <td>{cell.content}</td>;
+  const { isColSwapping } = useContext(GridContext);
+
+  return (
+    <td
+      style={{
+        ...(isColSwapping ? { opacity: 0 } : { opacity: 1 }),
+      }}
+    >
+      {cell.content}
+    </td>
+  );
 };
 
 export default Cell;

@@ -1,9 +1,10 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, useContext, useEffect } from "react";
 import { CellData } from "./Cell";
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
 import FakeCell from "./FakeCell";
 import { RowData } from "./Row";
+import { GridContext } from "../GridContext";
 
 type ColCell = CellData & {
   rowId: RowData["id"];
@@ -19,7 +20,8 @@ type ColProps = {
 };
 
 const Col: FC<ColProps> = ({ col }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } =
+  const { isColSwapping, setIsColSwapping } = useContext(GridContext);
+  const { attributes, listeners, setNodeRef, transform, transition, active } =
     useSortable({ id: col.id });
 
   const style: CSSProperties = {
@@ -27,14 +29,27 @@ const Col: FC<ColProps> = ({ col }) => {
     transform: CSS.Transform.toString(transform),
   };
 
+  useEffect(() => {
+    const swapping = active !== null;
+
+    if (swapping !== isColSwapping) {
+      setIsColSwapping(swapping);
+    }
+  }, [active, isColSwapping, setIsColSwapping]);
+
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="fake-col"
-    >
+    <div ref={setNodeRef} style={style} {...attributes} className="fake-col">
+      <div
+        {...listeners}
+        style={{
+          textAlign: "center",
+          cursor: "grab",
+          height: "30px",
+        }}
+        className="fake-cell"
+      >
+        ...
+      </div>
       {col.children.map((cell) => (
         <FakeCell key={cell.id} cell={cell} rowId={cell.rowId} />
       ))}

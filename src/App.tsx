@@ -98,10 +98,24 @@ function App() {
   const [sizes, setSizes] = useState<Grid["sizes"]>({
     row: {},
   });
+  const [isColSwapping, setIsColSwapping] = useState(false);
 
   return (
-    <main>
-      <GridContext.Provider value={{ grid, setGrid, sizes, setSizes }}>
+    <main
+      style={{
+        position: "relative",
+      }}
+    >
+      <GridContext.Provider
+        value={{
+          grid,
+          setGrid,
+          sizes,
+          setSizes,
+          isColSwapping,
+          setIsColSwapping,
+        }}
+      >
         <RowSwap />
         <br />
         <ColSwap />

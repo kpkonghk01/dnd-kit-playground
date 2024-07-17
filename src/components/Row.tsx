@@ -36,7 +36,19 @@ const Row: FC<RowProps> = ({ row }) => {
   }, [node, row.id, setSizes]);
 
   return (
-    <tr ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <tr ref={setNodeRef} style={style} {...attributes}>
+      <td
+        style={{
+          border: "0px solid black",
+          textAlign: "center",
+          verticalAlign: "middle",
+          cursor: "grab",
+          width: "20px",
+        }}
+        {...listeners}
+      >
+        ...
+      </td>
       {row.children.map((cell) => (
         <Cell key={cell.id} cell={cell} />
       ))}
